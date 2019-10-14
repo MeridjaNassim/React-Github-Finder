@@ -45,6 +45,7 @@ img {
   margin: auto;
   overflow: hidden;
   padding: 0 2rem;
+  padding-bottom: 20px;
 }
 
 /* Text Styles*/

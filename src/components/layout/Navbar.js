@@ -17,7 +17,7 @@ const Navbar = ({ icon, title }) => {
         </li>
         <li>
           <Link to="/about">
-            <i class="fas fa-question-circle"></i> About
+            <i className="fas fa-question-circle"></i> About
           </Link>
         </li>
       </ul>

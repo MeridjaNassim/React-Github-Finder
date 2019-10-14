@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-
+import React, { useState, useContext } from "react";
+import GithubContext from "../../context/github/githubContext";
+import AlertContext from "../../context/alert/alertContext";
 /// Search component using useState Hook ;
-const Search = ({ searchUsers, setAlert, showClear, clearUsers }) => {
+const Search = () => {
+  const githubContext = useContext(GithubContext);
+  const alertContext = useContext(AlertContext);
+  const { setAlert } = alertContext;
   const [text, setText] = useState(""); /// useState returns an array containing the param we want to use as state and a method to modify it
   /// in this case : text the value entered , setText the method to modify it in onChange and onSubmit
   const onChange = e => {
@@ -13,7 +16,7 @@ const Search = ({ searchUsers, setAlert, showClear, clearUsers }) => {
     if (text === "") {
       setAlert("Please Enter something", "light");
     } else {
-      searchUsers(text);
+      githubContext.searchUsers(text);
       setText("");
     }
   };
@@ -24,7 +27,7 @@ const Search = ({ searchUsers, setAlert, showClear, clearUsers }) => {
         <input
           type="text"
           name="text"
-          placeholder="Search Users ..."
+          placeholder="Search for users ..."
           onChange={onChange}
           value={text}
           style={{
@@ -35,8 +38,8 @@ const Search = ({ searchUsers, setAlert, showClear, clearUsers }) => {
 
         <input type="submit" value="Search" className="btn "></input>
 
-        {showClear && (
-          <button className="btn" onClick={clearUsers}>
+        {githubContext.users.length > 0 && (
+          <button className="btn" onClick={githubContext.clearUsers}>
             Clear
           </button>
         )}
@@ -45,10 +48,4 @@ const Search = ({ searchUsers, setAlert, showClear, clearUsers }) => {
   );
 };
 
-Search.propTypes = {
-  searchUsers: PropTypes.func.isRequired,
-  clearUsers: PropTypes.func.isRequired,
-  showClear: PropTypes.bool.isRequired,
-  setAlert: PropTypes.func.isRequired
-};
 export default Search;
