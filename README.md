@@ -10,3 +10,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 #### User Component : give you information on the user you selected and links to its profile , repos 
 
 ![ScreenShot](./screenshots/user.JPG)
+
+#### Mobile View of the App 
+
+![ScreenShot](./screenshots/mobileView.JPG)
